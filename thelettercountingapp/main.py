@@ -27,8 +27,5 @@ print(f"Hello {name_validated}")
 print("I will count the number of timesthat a specific letter occurs in a message.")
 messsage_validated =  validate_string(message="Please enter a message: ", item="message").lower()
 letter_validated = validate_string(message="Which letter would you like to count the occurrences of: ", item="letter", size=True).lower().strip()
-count=0
-for character in messsage_validated:
-  if character == letter_validated:
-    count = count + 1
-print(f"{name_validated}, the message has {count} {letter_validated}'s in it.")
+letter_count = messsage_validated.count(letter_validated)
+print(f"{name_validated}, the message has {letter_count} {letter_validated}'s in it.")
