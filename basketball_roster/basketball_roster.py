@@ -25,7 +25,7 @@ print_roster(team)
 bad_luck = randrange(5)
 injured_player = team.pop(bad_luck)
 print(f"Oh no, {injured_player} is injured")
-print("Your roster only has 4 players")
+print(f"Your roster only has {len(team)} players")
 team.insert(bad_luck,input(f"Who will take {injured_player}'s spot: ").title())
 print_roster(team)
 
