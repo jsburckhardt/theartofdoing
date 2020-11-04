@@ -31,4 +31,4 @@ print_roster(team)
 
 # Wishing luck:
 print(f"Good luck {team[bad_luck]} you will do great!")
-print("Your roster now has 5 players.")
+print(f"Your roster now has {len(team)} players.")
