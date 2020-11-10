@@ -30,9 +30,15 @@ def cook(plates, times):
     cooking_burner_1, cooking_time_1 = cook_status(cooking_burner_1,times, cooking_time_1)
     cooking_burner_2, cooking_time_2 = cook_status(cooking_burner_2,times, cooking_time_2)
     
-    total_cook_time += 1
-    cooking_time_1 -= 1
-    cooking_time_2 -= 1
+    if cooking_time_1 > 0 and cooking_time_2 > 0:
+      reduce_by = min([cooking_time_1,cooking_time_2])
+      total_cook_time += 1
+      cooking_time_1 -= 1
+      cooking_time_2 -= 1
+    else:
+      total_cook_time += 1
+      cooking_time_1 -= 1
+      cooking_time_2 -= 1
 
     # verify if cook done
     cooking_burner_1, cooking_time_1 = cook_status(cooking_burner_1,times, cooking_time_1)
@@ -43,20 +49,18 @@ def cook(plates, times):
   print(total_cook_time)
 
 # Load file
-with open('adaanddishes.txt') as f:
-  lines = [line.rstrip() for line in f]
+# with open('adaanddishes.txt') as f:
+#   lines = [line.rstrip() for line in f]
 
-# Loop test cases and load times and length
 times = []
 total_cook_times = []
-quantity_test_cases = int(lines[0])
+quantity_test_cases = int(input())
 for x in range(quantity_test_cases):
   # capture test case
-  plates = int(lines[(x*2)+1])
-  times = lines[(x*2)+2].split(" ")
+  plates = int(input())
+  times = input().split(" ")
   # sort and convert times
   organise_times(times)
   
   # start cooking
   cook(plates, times)
-
