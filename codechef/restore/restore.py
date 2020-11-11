@@ -13,27 +13,29 @@ def complex_algorith(n,a,b):
         j -= 1
 
 def find_a(n,expected_b):
-  base = [7]*n
+  # batches = [[1,10],[11,100],[101,1000],[1001,10000],[10001,100000],[100001,1000000],[1000001,4000000]]
+  # for batch in batches:
+  base = [n]*n
   for i in product(*[range(1,i) for i in base]):
     b = []
-    complex_algorith(n,i,b)
-    if i[0] == 5:
-      print(f"{i},{b},{expected_b}\n")
-    if tuple(b) == expected_b:
-      print(i)
-    # for j in range(len(count)):
-    #     print( '{0:3} , {1:3} , {2:1}'.format(first_index, table[i[j]][j], j+1))
-    # first_index += 1
+    complex_algorith(n,i,b)    
+    if b == expected_b:
+      return(i)
 
 
-N = 5
-a = [2,6,5,3,4]
-expected_b = [5,2,3,4,5]
-b = []
-find_a(N,expected_b)
-# complex_algorith(N,a,b)
-# generate_sample_a(4)
-# print(b)
-# if b == processed_b:
-#   print("party my friend")
+
+quantity_test_cases = int(input())
+for x in range(quantity_test_cases):
+  N = int(input())
+  expected_b_input = input().split(" ")
+  expected_b = [int(i) for i in expected_b_input]
+  print(*find_a(N,expected_b))
+
+# # N = 5
+# N = 4
+# # a = [2,6,5,3,4]
+# expected_b = [5,2,3,4,5]
+# expected_b = [4,4,4,4]
+# b = []
+# print(*find_a(N,expected_b))
 
