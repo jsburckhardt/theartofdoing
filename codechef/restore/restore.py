@@ -1,41 +1,38 @@
-# import memory_profiler
-from itertools import product
+# Calculate prime numbers
+def sieve_of_eratosthenes(n): 
+    primes = []
+    prime = [True for i in range(n + 1)] 
+    p = 2
+    while (p * p <= n): 
+        if (prime[p] == True): 
+            for i in range(p * 2, n + 1, p): 
+                prime[i] = False
+        p += 1
+    prime[0]= False
+    prime[1]= False
+    for p in range(n + 1): 
+        if prime[p]: 
+            primes.append(p)
+    return(primes)
 
-# @profile
-def complex_algorith(n,a,b):
-  for i in range(n):
-    j = n-1
-    while j >= 0:
-      if a[j] % a[i] == 0:
-        b.append(j+1)
-        break
-      else:
-        j -= 1
+# max number of primes
+primes = sieve_of_eratosthenes(4000001)
 
-def find_a(n,expected_b):
-  # batches = [[1,10],[11,100],[101,1000],[1001,10000],[10001,100000],[100001,1000000],[1000001,4000000]]
-  # for batch in batches:
-  base = [n]*n
-  for i in product(*[range(1,i) for i in base]):
-    b = []
-    complex_algorith(n,i,b)    
-    if b == expected_b:
-      return(i)
-
-
-
+# get quantity of test cases
 quantity_test_cases = int(input())
+
 for x in range(quantity_test_cases):
-  N = int(input())
-  expected_b_input = input().split(" ")
-  expected_b = [int(i) for i in expected_b_input]
-  print(*find_a(N,expected_b))
-
-# # N = 5
-# N = 4
-# # a = [2,6,5,3,4]
-# expected_b = [5,2,3,4,5]
-# expected_b = [4,4,4,4]
-# b = []
-# print(*find_a(N,expected_b))
-
+  # capture length of sample
+  n = int(input())
+  # capture b
+  b_input = input().split(" ")
+  b = [int(i) for i in b_input]
+  # start calculating a
+  a = []
+  map = {}
+  for i in b:
+    map[i] = map.pop(i) + 1 if i in map else 1
+  for i in range(n):
+    a.append(primes[b[i]])
+    map[b[i]] = map.pop(b[i])-1
+  print(*a)
