@@ -62,7 +62,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+	"postCreateCommand": "pip install --user -r requirements.txt",
 	"mounts": [
 		"source=projectname-bashhistory,target=/commandhistory,type=volume"
 	],
